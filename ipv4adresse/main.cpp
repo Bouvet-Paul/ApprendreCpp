@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ipv4.h"
+
 using namespace std;
 void AfficherTableau(unsigned char *tab);
 int main()
@@ -20,6 +21,15 @@ int main()
     uneAdresse.ObtenirAdresseDiffusion(diffusion);
     cout << "Diffusion : ";
     AfficherTableau(diffusion);
+    uneAdresse.ObtenirPremiereAdresse(reseau);
+    cout << "Premiere Adresse : ";
+    AfficherTableau(reseau);
+    uneAdresse.ObtenirDerniereAdresse(diffusion);
+    cout << "Derniere Adresse : ";
+    AfficherTableau(diffusion);
+
+    cout << "Nombre de Machines: " << uneAdresse.ObtenirNombreMachine() << endl;
+
     return 0;
 }
 

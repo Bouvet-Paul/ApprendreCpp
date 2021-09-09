@@ -1,4 +1,5 @@
 #include "ipv4.h"
+#include <math.h>
 IPv4::IPv4(const unsigned char * _adresse,const unsigned char _cidr)
 {
     adresse = new unsigned char [4];
@@ -66,17 +67,34 @@ void IPv4::ObtenirAdresseDiffusion(unsigned char *_diffusion)
         _diffusion[indice] = adresseDuReseau[indice] | ~masque[indice] ;
 }
 
-/*void IPv4::ObtenirPremiereAdresse(unsigned char *_reseau)
+void IPv4::ObtenirPremiereAdresse(unsigned char *_Premierreseau)
 {
+    ObtenirAdresseReseau(_Premierreseau);
+    _Premierreseau[3] += 1;
+}
+
+void IPv4::ObtenirDerniereAdresse(unsigned char *_Dernierediffusion)
+{
+    ObtenirAdresseDiffusion(_Dernierediffusion);
+    _Dernierediffusion[3] += -1;
+}
+
+unsigned int IPv4::NbBitA1(unsigned char val)
+{
+    int n = 0;
+    do{
+        n += val & 1;
+        val>>=1;
+    }while(val>0);
+    return n;
+}
+
+unsigned int IPv4::ObtenirNombreMachine()
+{
+    unsigned int nb = 0;
+    for (int i = 0; i<4; i++)
+        nb += NbBitA1(masque[i]);
+    return exp2(32 - nb) -2;
 
 }
 
-void IPv4::ObtenirDerniereAdresse(unsigned char *_diffusion)
-{
-
-}
-
-void IPv4::ObtenirNombreMachine(unsigned char *_masque)
-{
-
-}*/
