@@ -1,0 +1,7 @@
+#include <menu.h>
+#include<string>
+
+Menu::Menu(const string &_nom):nom(_nom), longueurMax(0)
+{
+    
+}
